@@ -1,0 +1,13 @@
+.Main {
+  padding-inline: 1rem;
+}
+
+.NavigationMenu {
+  position: fixed;
+  bottom: 0;
+  inset-inline: 0;
+
+  padding-inline: 1rem;
+  padding-bottom: 0.5rem;
+  margin: 0 auto;
+}

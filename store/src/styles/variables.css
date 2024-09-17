@@ -1,0 +1,4 @@
+:root {
+  --color-bg: var(--tg-theme-bg-color);
+  --color-text-normal: var(--tg-theme-text-color);
+}

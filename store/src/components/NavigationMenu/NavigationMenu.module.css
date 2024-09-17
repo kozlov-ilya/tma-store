@@ -1,0 +1,8 @@
+.NavigationMenu {
+  padding-inline: 16px;
+}
+
+.MenuItemLink {
+  position: absolute;
+  inset: 0;
+}
