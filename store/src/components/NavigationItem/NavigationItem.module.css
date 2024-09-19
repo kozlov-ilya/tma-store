@@ -2,3 +2,10 @@
   position: absolute;
   inset: 0;
 }
+
+.NavigationItem {
+}
+
+.NavigationItem.NavigationItem_active {
+  color: var(--tg-theme-hint-color);
+}

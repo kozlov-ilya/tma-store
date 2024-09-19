@@ -1,0 +1,41 @@
+.ProductCard {
+  overflow: hidden;
+
+  width: 100%;
+  max-width: 250px;
+  border-radius: 18px;
+  background: var(--tg-theme-bg-color);
+}
+
+.Footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Info {
+  display: flex;
+  flex-direction: column;
+}
+
+.ImageContainer {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 6px;
+  border-radius: 14px;
+}
+
+.Image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.ButtonContainer {
+  padding: 6px;
+}
+
+.AddButton.AddButton {
+  border-radius: 14px;
+}

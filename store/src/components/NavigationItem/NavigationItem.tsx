@@ -14,8 +14,19 @@ export const NavigationItem = (props: NavigationItemProps) => {
   const match = useMatch(path);
   const isActive = !!match;
 
+  const classname = [
+    styles['NavigationItem'],
+    !isActive ? styles['NavigationItem_active'] : '',
+  ]
+    .filter(cls => cls.length)
+    .join(' ');
+
   return (
-    <InlineButtons.Item {...rest} mode={isActive ? 'bezeled' : 'plain'}>
+    <InlineButtons.Item
+      {...rest}
+      mode={isActive ? 'bezeled' : 'plain'}
+      className={classname}
+    >
       {children}
       <Link to={path} className={styles['NavItemLink']}></Link>
     </InlineButtons.Item>

@@ -29,9 +29,9 @@ a {
 body {
   min-height: 100svh;
   margin: 0;
-  background: var(--color-bg);
+  background: var(--tg-theme-secondary-bg-color);
 
   font-size: 16px;
   line-height: 1.5;
-  color: var(--color-text-normal);
+  color: var(--color-text);
 }

@@ -9,6 +9,7 @@ export const MainLayout = () => {
       <div className={styles['Main']}>
         <Outlet />
       </div>
+
       <div className={styles['NavigationMenu']}>
         <NavigationMenu />
       </div>
