@@ -4,7 +4,7 @@
   width: 100%;
   max-width: 250px;
   border-radius: 18px;
-  background: var(--tg-theme-bg-color);
+  background: var(--color-bg-secondary);
 }
 
 .Footer {

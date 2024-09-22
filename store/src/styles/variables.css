@@ -1,2 +1,4 @@
 :root {
+  --color-bg-primary: var(--tg-theme-bg-color, black);
+  --color-bg-secondary: var(--tg-theme-secondary-bg-color);
 }

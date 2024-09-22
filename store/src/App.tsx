@@ -5,10 +5,27 @@ import Walletpage from './pages/Walletpage';
 import Cartpage from './pages/Cartpage';
 import Notfoundpage from './pages/Notfoundpage';
 import WebApp from '@twa-dev/sdk';
+import { useEffect } from 'react';
+import { usePlatform } from './hooks/usePlatform';
 
 WebApp.expand();
 
 function App() {
+  const { isMobile, isWeb } = usePlatform();
+
+  useEffect(() => {
+    if (isMobile || isWeb) {
+      document.body.style.setProperty(
+        '--color-bg-primary',
+        'var(--tg-theme-secondary-bg-color)',
+      );
+      document.body.style.setProperty(
+        '--color-bg-secondary',
+        'var(--tg-theme-bg-color)',
+      );
+    }
+  }, [isMobile, isWeb]);
+
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>

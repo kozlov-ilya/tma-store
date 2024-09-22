@@ -26,10 +26,17 @@ a {
   color: inherit;
 }
 
+html {
+  position: relative;
+
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
+
 body {
   min-height: 100svh;
   margin: 0;
-  background: var(--tg-theme-secondary-bg-color);
+  background: var(--color-bg-primary);
 
   font-size: 16px;
   line-height: 1.5;

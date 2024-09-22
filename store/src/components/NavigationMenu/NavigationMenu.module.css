@@ -1,8 +1,7 @@
 .NavigationMenu {
+  width: 100%;
   padding: 8px;
-  /* border-radius: 16px; */
-  /* border-top: 1.5px solid var(--tg-theme-bg-color); */
-  background: var(--tg-theme-secondary-bg-color);
+  background: var(--color-bg-primary);
   box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 4px;
 }
 
