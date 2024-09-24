@@ -1,0 +1,11 @@
+.TransactionHistory {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.TransactionList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}

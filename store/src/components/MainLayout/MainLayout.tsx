@@ -8,7 +8,6 @@ export const MainLayout = () => {
   return (
     <>
       <div className={styles['Main']}>
-        <CoinsIndicator />
         <Outlet />
       </div>
 

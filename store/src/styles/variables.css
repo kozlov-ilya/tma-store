@@ -1,4 +1,12 @@
 :root {
   --color-bg-primary: var(--tg-theme-bg-color, black);
   --color-bg-secondary: var(--tg-theme-secondary-bg-color);
+
+  --color-text: var(--tg-theme-text-color);
+  --color-text-accent: var(--tg-theme-accent-text-color);
+  --color-hint: var(--tg-theme-hint-color);
+  --color-link: var(--tg-theme-link-color);
+
+  --color-desctructive: var(--tg-theme-destructive-text-color);
+  --color-positive: #32e55e;
 }

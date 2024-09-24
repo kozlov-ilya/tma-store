@@ -1,0 +1,6 @@
+.CoinChip {
+}
+
+.CoinChip_active {
+  background: var(--tg-theme-link-color);
+}

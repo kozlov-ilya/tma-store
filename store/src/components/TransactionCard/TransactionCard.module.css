@@ -1,0 +1,52 @@
+.TransactionCard {
+  display: flex;
+  column-gap: 16px;
+
+  background: var(--color-bg-secondary);
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.Icon {
+  width: 50px;
+  height: 50px;
+
+  background: var(--color-link);
+  border-radius: 12px;
+}
+
+.Info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  flex-grow: 1;
+}
+
+.Title {
+  font-weight: bold;
+}
+
+.Date {
+  font-size: 14px;
+  color: var(--color-hint);
+}
+
+.Coins {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+
+.Value {
+  display: flex;
+  column-gap: 2px;
+}
+
+.Value_deposit {
+  color: var(--color-positive);
+}
+
+.Value_buy {
+  color: var(--color-desctructive);
+}

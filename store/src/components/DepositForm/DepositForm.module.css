@@ -1,0 +1,12 @@
+.DepositForm {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  /* padding-block: 16px; */
+}
+
+.CoinChips {
+  display: flex;
+  column-gap: 8px;
+}

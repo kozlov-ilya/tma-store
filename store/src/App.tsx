@@ -1,36 +1,24 @@
 import { Route, Routes } from 'react-router-dom';
 import { MainLayout } from './components/MainLayout/MainLayout';
 import Homepage from './pages/Homepage/Homepage';
-import Walletpage from './pages/Walletpage';
+import WalletPage from './pages/WalletPage/WalletPage';
 import Cartpage from './pages/Cartpage';
 import Notfoundpage from './pages/Notfoundpage';
 import WebApp from '@twa-dev/sdk';
-import { useEffect } from 'react';
-import { usePlatform } from './hooks/usePlatform';
+import { useInitColorProperties } from './hooks/useInitColorProperties';
+import { useInitUserData } from './hooks/useInitUserData';
 
 WebApp.expand();
 
 function App() {
-  const { isMobile, isWeb } = usePlatform();
-
-  useEffect(() => {
-    if (isMobile || isWeb) {
-      document.body.style.setProperty(
-        '--color-bg-primary',
-        'var(--tg-theme-secondary-bg-color)',
-      );
-      document.body.style.setProperty(
-        '--color-bg-secondary',
-        'var(--tg-theme-bg-color)',
-      );
-    }
-  }, [isMobile, isWeb]);
+  useInitColorProperties();
+  useInitUserData();
 
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Homepage />}></Route>
-        <Route path="/wallet" element={<Walletpage />}></Route>
+        <Route path="/wallet" element={<WalletPage />}></Route>
         <Route path="/cart" element={<Cartpage />}></Route>
         <Route path="*" element={<Notfoundpage />}></Route>
       </Route>

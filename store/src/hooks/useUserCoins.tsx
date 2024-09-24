@@ -1,21 +1,28 @@
 import { useUserCoinsContext } from 'src/contexts/userCoinsContext';
-import { useCloudStorage } from './useCloudStorage';
+import { fetchUserCoins, pushUserCoins } from 'src/lib/coins';
 
 export const useUserCoins = () => {
   const { coins, setCoins } = useUserCoinsContext();
-  const { setItem } = useCloudStorage();
 
-  const getUserCoins = () => {
-    return coins;
+  const initUserCoins = async () => {
+    const userCoins = await fetchUserCoins();
+
+    if (!userCoins) {
+      await pushUserCoins(0);
+
+      setCoins(0);
+
+      return;
+    }
+
+    setCoins(userCoins);
   };
 
-  const setUserCoins = async (coins: number) => {
-    await setItem('coins', `${coins}`).catch((err) => {
-      throw new Error(err);
-    });
+  const updateUserCoins = async (coins: number) => {
+    await pushUserCoins(coins);
 
     setCoins(coins);
   };
 
-  return { getUserCoins, setUserCoins };
+  return { coins, initUserCoins, updateUserCoins };
 };

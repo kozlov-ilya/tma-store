@@ -1,0 +1,29 @@
+.BalanceDisplay {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+
+  /* padding-block: 16px; */
+  border-radius: 14px;
+}
+
+.Title {
+  font-size: 1rem;
+  color: var(--tg-theme-hint-color);
+}
+
+.CoinsContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.CoinIcon {
+  max-width: 36px;
+}
+
+.CoinsValue {
+  font-size: 3rem;
+  line-height: 1.15em;
+  font-weight: bold;
+}
