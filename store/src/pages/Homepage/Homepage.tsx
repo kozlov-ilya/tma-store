@@ -1,20 +1,13 @@
-import styles from './Homepage.module.css';
+import styles from './HomePage.module.css';
 
-import { ProductCard } from '../../components/ProductCard/ProductCard';
+import { Catalog } from 'src/components/Catalog/Catalog';
 
-const Homepage = () => {
+const HomePage = () => {
   return (
     <div>
-      <h1 className={styles['Title']}>Homepage</h1>
-      <div className={styles['CardsList']}>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-      </div>
+      <Catalog />
     </div>
   );
 };
 
-export default Homepage;
+export default HomePage;

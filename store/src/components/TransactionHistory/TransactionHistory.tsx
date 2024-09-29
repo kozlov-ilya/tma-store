@@ -11,6 +11,12 @@ export const TransactionHistory = () => {
 
   return (
     <div className={styles['TransactionHistory']}>
+      <div className={styles['Title']}>Recent Transactions</div>
+      <div className={styles['TransactionList']}>
+        {reversedHistory.map(({ id, action, value, date }) => (
+          <TransactionCard key={id} action={action} value={value} date={date} />
+        ))}
+      </div>
       <Button
         stretched
         onClick={async () => {
@@ -19,11 +25,6 @@ export const TransactionHistory = () => {
       >
         Reset history
       </Button>
-      <div className={styles['TransactionList']}>
-        {reversedHistory.map(({ id, action, value, date }) => (
-          <TransactionCard key={id} action={action} value={value} date={date} />
-        ))}
-      </div>
     </div>
   );
 };

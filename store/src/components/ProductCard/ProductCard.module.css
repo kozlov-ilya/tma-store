@@ -1,41 +1,65 @@
 .ProductCard {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
   overflow: hidden;
 
   width: 100%;
-  max-width: 250px;
   border-radius: 18px;
   background: var(--color-bg-secondary);
+}
+
+.ImageContainer {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+}
+
+.Image {
+  object-fit: cover;
+  border-radius: inherit;
 }
 
 .Footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  row-gap: 8px;
 }
 
 .Info {
   display: flex;
   flex-direction: column;
+  row-gap: 4px;
+
+  padding-inline: 6px;
 }
 
-.ImageContainer {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  padding: 6px;
-  border-radius: 14px;
+.Title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.Image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
+.Price {
+  display: flex;
+  column-gap: 4px;
+  color: var(--color-text);
+  align-items: center;
 }
 
 .ButtonContainer {
   padding: 6px;
 }
 
-.AddButton.AddButton {
-  border-radius: 14px;
+.Button {
+  &.Button {
+    border-radius: 14px;
+  }
+
+  &[data-danger='true'] {
+    background: var(--tg-theme-destructive-text-color);
+  }
 }

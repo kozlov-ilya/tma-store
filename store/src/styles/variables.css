@@ -1,7 +1,7 @@
 :root {
   --color-bg-primary: var(--tg-theme-bg-color, black);
   --color-bg-secondary: var(--tg-theme-secondary-bg-color);
-
+  --tg-theme-header-bg-color: red;
   --color-text: var(--tg-theme-text-color);
   --color-text-accent: var(--tg-theme-accent-text-color);
   --color-hint: var(--tg-theme-hint-color);

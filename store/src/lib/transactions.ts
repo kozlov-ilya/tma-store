@@ -5,14 +5,14 @@ export const fetchTransactionHistory = async () => {
   try {
     const transactionHistory = await getItem('transaction-history');
 
-    if (transactionHistory === undefined) return null;
+    if (!transactionHistory) return null;
 
     const parsedTransactionsHistory: Transaction[] =
       JSON.parse(transactionHistory);
 
     return parsedTransactionsHistory;
   } catch {
-    throw new Error('Error fetching transaction-history');
+    throw new Error('Error fetching transaction history');
   }
 };
 
@@ -22,6 +22,6 @@ export const pushTransactionHistory = async (transactions: Transaction[]) => {
 
     await setItem('transaction-history', transactionHistory);
   } catch {
-    throw new Error('Error setting transaction-history');
+    throw new Error('Error pushing transaction history');
   }
 };

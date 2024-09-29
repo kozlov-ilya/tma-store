@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import { MainLayout } from './components/MainLayout/MainLayout';
-import Homepage from './pages/Homepage/Homepage';
+import HomePage from './pages/HomePage/HomePage';
 import WalletPage from './pages/WalletPage/WalletPage';
-import Cartpage from './pages/Cartpage';
-import Notfoundpage from './pages/Notfoundpage';
+import CartPage from './pages/CartPage/CartPage';
+import NotfoundPage from './pages/NotfoundPage/NotfoundPage';
 import WebApp from '@twa-dev/sdk';
 import { useInitColorProperties } from './hooks/useInitColorProperties';
 import { useInitUserData } from './hooks/useInitUserData';
@@ -17,10 +17,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        <Route index element={<Homepage />}></Route>
+        <Route index element={<HomePage />}></Route>
         <Route path="/wallet" element={<WalletPage />}></Route>
-        <Route path="/cart" element={<Cartpage />}></Route>
-        <Route path="*" element={<Notfoundpage />}></Route>
+        <Route path="/cart" element={<CartPage />}></Route>
+        <Route path="*" element={<NotfoundPage />}></Route>
       </Route>
     </Routes>
   );

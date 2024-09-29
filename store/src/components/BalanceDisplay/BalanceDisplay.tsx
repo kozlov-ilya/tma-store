@@ -11,7 +11,7 @@ export const BalanceDisplay = () => {
       <div className={styles['Title']}>Your Balance</div>
       <div className={styles['CoinsContainer']}>
         <div className={styles['CoinIcon']}>
-          <img src={coinIcon} alt="coin" width={'100%'} height={'100%'} />
+          <img src={coinIcon} alt="coin" width={36} height={36} />
         </div>
         <div className={styles['CoinsValue']}>{`${coins}.00`}</div>
       </div>

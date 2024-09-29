@@ -51,7 +51,6 @@ export const useTransaction = () => {
 
     const newTransaction: Transaction = { id, action, value, date };
 
-    // existingHistory.push(newTransaction);
     const newHistory = [...existingHistory.slice(-2), newTransaction];
 
     await updateTransactionHistory(newHistory);
@@ -60,7 +59,6 @@ export const useTransaction = () => {
   return {
     transactionHistory,
     initTransactionHistory,
-    updateTransactionHistory,
     resetTransactionHistory,
     addNewTransaction,
   };

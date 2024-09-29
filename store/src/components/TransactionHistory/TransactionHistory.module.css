@@ -9,3 +9,8 @@
   flex-direction: column;
   row-gap: 8px;
 }
+
+.Title {
+  font-size: 1rem;
+  color: var(--tg-theme-hint-color);
+}

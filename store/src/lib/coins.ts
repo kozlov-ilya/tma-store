@@ -4,7 +4,7 @@ export const fetchUserCoins = async () => {
   try {
     const userCoins = await getItem('coins');
 
-    if (userCoins === undefined) return null;
+    if (!userCoins) return null;
 
     return +userCoins;
   } catch {

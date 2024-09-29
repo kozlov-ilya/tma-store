@@ -1,0 +1,12 @@
+.Catalog {
+}
+
+.ProductList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.ProductItem {
+  max-width: 300px;
+}

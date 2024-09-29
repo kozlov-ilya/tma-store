@@ -1,0 +1,30 @@
+.CartItem {
+  padding: 8px;
+  border-radius: 14px;
+  background: var(--color-bg-secondary);
+}
+
+.Info {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.Image {
+  border-radius: 8px;
+}
+
+.Title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Price {
+  display: flex;
+  column-gap: 4px;
+  color: var(--color-text);
+  align-items: center;
+}
