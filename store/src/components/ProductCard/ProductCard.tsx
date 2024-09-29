@@ -5,34 +5,52 @@ import { Product } from 'src/types/product';
 import { Icon } from '../Icon/Icon';
 import coinIcon from 'src/assets/img/coin.svg';
 import { useProduct } from 'src/hooks/useProduct';
-import { useState } from 'react';
+import { SaveButton } from '../SaveButton/SaveButton';
+import { useMutation } from '@tanstack/react-query';
 
 export const ProductCard = (props: { product: Product }) => {
   const { product } = props;
   const { id, imgSrc, name, price } = product;
 
-  const [isPending, setIsPending] = useState(false);
+  const {
+    addProductToCart,
+    removeProductFromCart,
+    checkIfProductInCart,
+    addProductToSaved,
+    removeProductFromSaved,
+    checkIfProductSaved,
+  } = useProduct();
 
-  const { addProductToCart, isProductInCart, removeProductFromCart } =
-    useProduct();
+  const isProductInCart = checkIfProductInCart(id);
+  const isProductSaved = checkIfProductSaved(id);
 
-  const onAdd = async () => {
-    setIsPending(true);
+  const onCartButtonClick = async (isProductInCart: boolean) => {
+    if (isProductInCart) {
+      await removeProductFromCart(id);
+
+      return;
+    }
 
     await addProductToCart(product);
-
-    setIsPending(false);
   };
 
-  const onRemove = async () => {
-    setIsPending(true);
+  const onSaveButtonClick = async (isProductSaved: boolean) => {
+    if (isProductSaved) {
+      await removeProductFromSaved(id);
 
-    await removeProductFromCart(id);
+      return;
+    }
 
-    setIsPending(false);
+    await addProductToSaved(product);
   };
 
-  const productInCart = isProductInCart(id);
+  const mutationCart = useMutation({
+    mutationFn: onCartButtonClick,
+  });
+
+  const mutationSave = useMutation({
+    mutationFn: onSaveButtonClick,
+  });
 
   return (
     <div className={styles['ProductCard']}>
@@ -44,6 +62,14 @@ export const ProductCard = (props: { product: Product }) => {
           alt="card-image"
           className={styles['Image']}
         />
+        <div className={styles['SaveButtonContainer']}>
+          <SaveButton
+            size="l"
+            onClick={() => mutationSave.mutate(isProductSaved)}
+            disabled={mutationSave.isPending}
+            isActive={isProductSaved}
+          />
+        </div>
       </div>
       <div className={styles['Footer']}>
         <div className={styles['Info']}>
@@ -54,19 +80,17 @@ export const ProductCard = (props: { product: Product }) => {
           </span>
         </div>
         <div className={styles['ButtonContainer']}>
-          {
-            <Button
-              className={styles[`Button`]}
-              onClick={productInCart ? onRemove : onAdd}
-              size="m"
-              stretched={true}
-              loading={isPending}
-              disabled={isPending}
-              data-danger={productInCart}
-            >
-              {productInCart ? 'Remove' : 'To Cart'}
-            </Button>
-          }
+          <Button
+            className={styles[`Button`]}
+            onClick={() => mutationCart.mutate(isProductInCart)}
+            size="m"
+            stretched={true}
+            loading={mutationCart.isPending}
+            disabled={mutationCart.isPending}
+            data-danger={isProductInCart}
+          >
+            {isProductInCart ? 'Remove' : 'To Cart'}
+          </Button>
         </div>
       </div>
     </div>

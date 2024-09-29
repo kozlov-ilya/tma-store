@@ -1,0 +1,9 @@
+.SaveButton {
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-bg-primary) 50%, transparent);
+
+  color: var(--color-text);
+}
+
+.SaveButton_active {
+}

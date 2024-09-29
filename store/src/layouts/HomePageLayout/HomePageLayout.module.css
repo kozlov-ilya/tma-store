@@ -1,0 +1,30 @@
+.HomePageLayout {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.SegmentNav {
+  background: var(--color-bg-secondary);
+  padding: 4px;
+}
+
+.SegmentNav {
+  div {
+    div:first-child {
+      background: var(--tg-theme-button-color);
+      transition: transform 0.3s;
+    }
+  }
+}
+
+.SwipeContainer {
+  position: relative;
+  overflow: hidden;
+  /* height: 100vh; */
+}
+
+.MotionContainer {
+}

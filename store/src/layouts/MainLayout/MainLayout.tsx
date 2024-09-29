@@ -1,8 +1,7 @@
 import styles from './MainLayout.module.css';
 
-import { NavigationMenu } from '../NavigationMenu/NavigationMenu';
+import { NavigationMenu } from 'src/components/NavigationMenu/NavigationMenu';
 import { Outlet } from 'react-router-dom';
-import { CoinsIndicator } from '../CoinsIndicator/CoinsIndicator';
 
 export const MainLayout = () => {
   return (

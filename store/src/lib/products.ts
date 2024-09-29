@@ -38,3 +38,27 @@ export const pushProductsInCart = async (products: Product[]) => {
     throw new Error('Error pushing products in cart');
   }
 };
+
+export const fetchProductsSaved = async () => {
+  try {
+    const productsSaved = await getItem('products-saved');
+
+    if (!productsSaved) return null;
+
+    const parsedProductsSaved: Product[] = JSON.parse(productsSaved);
+
+    return parsedProductsSaved;
+  } catch {
+    throw new Error('Error fetching saved products');
+  }
+};
+
+export const pushProductsSaved = async (products: Product[]) => {
+  try {
+    const productsSaved = JSON.stringify(products);
+
+    await setItem('products-saved', productsSaved);
+  } catch {
+    throw new Error('Error pushing saved products');
+  }
+};

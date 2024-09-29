@@ -6,7 +6,7 @@ import { useProduct } from './useProduct';
 export const useInitUserData = () => {
   const { initUserCoins } = useUserCoins();
   const { initTransactionHistory } = useTransaction();
-  const { initCatalog, initProductsInCart } = useProduct();
+  const { initCatalog, initProductsInCart, initProductsSaved } = useProduct();
 
   useEffect(() => {
     const initUserData = async () => {
@@ -14,6 +14,7 @@ export const useInitUserData = () => {
       await initTransactionHistory();
       await initCatalog();
       await initProductsInCart();
+      await initProductsSaved();
     };
 
     initUserData();

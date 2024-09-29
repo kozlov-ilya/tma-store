@@ -6,6 +6,8 @@ type ContextType = {
   setCatalog: React.Dispatch<React.SetStateAction<Product[]>>;
   productsInCart: Product[];
   setProductsInCart: React.Dispatch<React.SetStateAction<Product[]>>;
+  productsSaved: Product[];
+  setProductsSaved: React.Dispatch<React.SetStateAction<Product[]>>;
 };
 
 const ProductContext = createContext<ContextType | null>(null);
@@ -17,10 +19,18 @@ export const ProductContextProvider = ({
 }) => {
   const [catalog, setCatalog] = useState<Product[]>([]);
   const [productsInCart, setProductsInCart] = useState<Product[]>([]);
+  const [productsSaved, setProductsSaved] = useState<Product[]>([]);
 
   return (
     <ProductContext.Provider
-      value={{ catalog, setCatalog, productsInCart, setProductsInCart }}
+      value={{
+        catalog,
+        setCatalog,
+        productsInCart,
+        setProductsInCart,
+        productsSaved,
+        setProductsSaved,
+      }}
     >
       {children}
     </ProductContext.Provider>
