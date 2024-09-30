@@ -1,10 +1,10 @@
 import styles from './Catalog.module.css';
 
 import { ProductCard } from '../ProductCard/ProductCard';
-import { useProduct } from 'src/hooks/useProduct';
+import { useProductStateContext } from 'src/contexts/productContext';
 
 export const Catalog = () => {
-  const { catalog } = useProduct();
+  const { catalog } = useProductStateContext();
 
   return (
     <div className={styles['Catalog']}>

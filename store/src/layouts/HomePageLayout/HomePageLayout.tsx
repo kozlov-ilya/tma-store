@@ -8,17 +8,19 @@ import { useSwipeable } from 'react-swipeable';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
+const transitionDuration = 0.115;
+
 const swipeVariants = {
   initial: (direction: 'left' | 'right') => ({
     x: direction === 'right' ? '-100%' : '100%',
   }),
   animate: {
     x: 0,
-    transition: { duration: 0.125 },
+    transition: { duration: transitionDuration },
   },
   exit: (direction: 'left' | 'right') => ({
     x: direction === 'right' ? '-100%' : '100%',
-    transition: { duration: 0.125 },
+    transition: { duration: transitionDuration },
   }),
 };
 
@@ -26,33 +28,35 @@ export const HomePageLayout = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  // Track current view manually
-  const [currentView, setCurrentView] = useState(location.pathname);
+  const [currentView, setCurrentView] = useState(pathname);
+  const [direction, setDirection] = useState(
+    pathname === '/' ? 'right' : 'left',
+  );
 
-  // This controls swipe direction and prevents instant switching
-  const [direction, setDirection] = useState('left');
+  const navigateToHomeView = () => {
+    if (currentView === '/') return;
+
+    setDirection('right');
+    setCurrentView('/');
+  };
+
+  const navigateToSavedView = () => {
+    if (currentView === '/saved') return;
+
+    setDirection('left');
+    setCurrentView('/saved');
+  };
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => {
-      if (currentView === '/') {
-        setDirection('left');
-        setCurrentView('/saved');
-      }
-    },
-    onSwipedRight: () => {
-      if (currentView === '/saved') {
-        setDirection('right');
-        setCurrentView('/');
-      }
-    },
+    onSwipedLeft: navigateToSavedView,
+    onSwipedRight: navigateToHomeView,
     preventScrollOnSwipe: true,
   });
 
-  // Handle navigation after animation completes
   const handleAnimationComplete = () => {
-    if (currentView !== pathname) {
-      navigate(currentView);
-    }
+    if (currentView === pathname) return;
+
+    navigate(currentView);
   };
 
   return (
@@ -62,23 +66,13 @@ export const HomePageLayout = () => {
           <SegmentedControl.Item
             className={styles['SegmentNavItem']}
             selected={currentView === '/'}
-            onClick={() => {
-              if (currentView === '/saved') {
-                setDirection('right');
-                setCurrentView('/');
-              }
-            }}
+            onClick={navigateToHomeView}
           >
             Catalog
           </SegmentedControl.Item>
           <SegmentedControl.Item
             selected={currentView === '/saved'}
-            onClick={() => {
-              if (currentView === '/') {
-                setDirection('left');
-                setCurrentView('/saved');
-              }
-            }}
+            onClick={navigateToSavedView}
           >
             Saved
           </SegmentedControl.Item>
@@ -87,7 +81,6 @@ export const HomePageLayout = () => {
           <AnimatePresence mode="wait" onExitComplete={handleAnimationComplete}>
             <motion.div
               key={currentView}
-              // custom={pathname === '/' ? 'right' : 'left'}
               custom={direction}
               initial="initial"
               animate="animate"

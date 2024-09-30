@@ -1,32 +1,39 @@
 import styles from './ProductCard.module.css';
 
-import { Button } from '@telegram-apps/telegram-ui';
+// import { Button } from '@telegram-apps/telegram-ui';
+import { Button } from '../Button/Button';
 import { Product } from 'src/types/product';
 import { Icon } from '../Icon/Icon';
 import coinIcon from 'src/assets/img/coin.svg';
-import { useProduct } from 'src/hooks/useProduct';
 import { SaveButton } from '../SaveButton/SaveButton';
 import { useMutation } from '@tanstack/react-query';
+import { useProduct } from 'src/hooks/useProduct';
+import { useProductStateContext } from 'src/contexts/productContext';
 
-export const ProductCard = (props: { product: Product }) => {
+interface ProductCardProps {
+  product: Product;
+}
+
+export const ProductCard = (props: ProductCardProps) => {
   const { product } = props;
-  const { id, imgSrc, name, price } = product;
+  const { id: productId, imgSrc, name, price } = product;
 
   const {
+    addProductToSavedProducts,
+    removeProductFromSavedProducts,
     addProductToCart,
     removeProductFromCart,
-    checkIfProductInCart,
-    addProductToSaved,
-    removeProductFromSaved,
-    checkIfProductSaved,
   } = useProduct();
 
-  const isProductInCart = checkIfProductInCart(id);
-  const isProductSaved = checkIfProductSaved(id);
+  const { savedProducts, cart, collection } = useProductStateContext();
 
-  const onCartButtonClick = async (isProductInCart: boolean) => {
-    if (isProductInCart) {
-      await removeProductFromCart(id);
+  const isInCart = !!cart.find(({ id }) => id === productId);
+  const isInSavedProducts = !!savedProducts.find(({ id }) => id === productId);
+  const isInCollection = !!collection.find(({ id }) => id === productId);
+
+  const onCartButtonClick = async () => {
+    if (isInCart) {
+      await removeProductFromCart(productId);
 
       return;
     }
@@ -34,14 +41,14 @@ export const ProductCard = (props: { product: Product }) => {
     await addProductToCart(product);
   };
 
-  const onSaveButtonClick = async (isProductSaved: boolean) => {
-    if (isProductSaved) {
-      await removeProductFromSaved(id);
+  const onSaveButtonClick = async () => {
+    if (isInSavedProducts) {
+      await removeProductFromSavedProducts(productId);
 
       return;
     }
 
-    await addProductToSaved(product);
+    await addProductToSavedProducts(product);
   };
 
   const mutationCart = useMutation({
@@ -65,9 +72,9 @@ export const ProductCard = (props: { product: Product }) => {
         <div className={styles['SaveButtonContainer']}>
           <SaveButton
             size="l"
-            onClick={() => mutationSave.mutate(isProductSaved)}
+            onClick={() => mutationSave.mutate()}
             disabled={mutationSave.isPending}
-            isActive={isProductSaved}
+            isActive={isInSavedProducts}
           />
         </div>
       </div>
@@ -80,17 +87,29 @@ export const ProductCard = (props: { product: Product }) => {
           </span>
         </div>
         <div className={styles['ButtonContainer']}>
-          <Button
-            className={styles[`Button`]}
-            onClick={() => mutationCart.mutate(isProductInCart)}
-            size="m"
-            stretched={true}
-            loading={mutationCart.isPending}
-            disabled={mutationCart.isPending}
-            data-danger={isProductInCart}
-          >
-            {isProductInCart ? 'Remove' : 'To Cart'}
-          </Button>
+          {isInCollection ? (
+            <Button
+              onClick={() => mutationCart.mutate()}
+              size="m"
+              stretched={true}
+              loading={mutationCart.isPending}
+              disabled={mutationCart.isPending}
+              context={'alternative'}
+            >
+              Sell
+            </Button>
+          ) : (
+            <Button
+              onClick={() => mutationCart.mutate()}
+              size="m"
+              stretched={true}
+              loading={mutationCart.isPending}
+              disabled={mutationCart.isPending}
+              context={isInCart ? 'danger' : undefined}
+            >
+              {isInCart ? 'Remove' : 'To Cart'}
+            </Button>
+          )}
         </div>
       </div>
     </div>

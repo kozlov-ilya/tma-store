@@ -10,7 +10,7 @@ import SavedPage from './pages/SavedPage/SavedPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 
 import { useInitColorProperties } from './hooks/useInitColorProperties';
-import { useInitUserData } from './hooks/useInitUserData';
+import { useInitStore } from './hooks/useInitStore';
 
 import WebApp from '@twa-dev/sdk';
 
@@ -18,7 +18,9 @@ WebApp.expand();
 
 function App() {
   useInitColorProperties();
-  useInitUserData();
+  useInitStore();
+
+  console.log('a');
 
   return (
     <Routes>

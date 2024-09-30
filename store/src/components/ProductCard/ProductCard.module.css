@@ -61,13 +61,3 @@
 .ButtonContainer {
   padding: 6px;
 }
-
-.Button {
-  &.Button {
-    border-radius: 14px;
-  }
-
-  &[data-danger='true'] {
-    background: var(--tg-theme-destructive-text-color);
-  }
-}

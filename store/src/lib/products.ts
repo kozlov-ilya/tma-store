@@ -1,6 +1,7 @@
 import { Product } from 'src/types/product';
 import { getItem, setItem } from './cloudStorage';
 
+/* --------------------------------- catalog -------------------------------- */
 export const fetchCatalog = async () => {
   const response = await fetch(
     'https://kozlov-ilya.github.io/data/tma-store/data/catalog.json',
@@ -15,50 +16,77 @@ export const fetchCatalog = async () => {
   return fetchedCatalog;
 };
 
-export const fetchProductsInCart = async () => {
+/* ---------------------------------- cart ---------------------------------- */
+export const fetchCart = async () => {
   try {
-    const productsInCart = await getItem('products-in-cart');
+    const cart = await getItem('cart');
 
-    if (!productsInCart) return null;
+    if (!cart) return null;
 
-    const parsedProductsInCart: Product[] = JSON.parse(productsInCart);
+    const parsedCart: Product[] = JSON.parse(cart);
 
-    return parsedProductsInCart;
+    return parsedCart;
   } catch {
-    throw new Error('Error fetching products in cart');
+    throw new Error('Error fetching cart');
   }
 };
 
-export const pushProductsInCart = async (products: Product[]) => {
+export const pushCart = async (products: Product[]) => {
   try {
-    const productsInCart = JSON.stringify(products);
+    const cart = JSON.stringify(products);
 
-    await setItem('products-in-cart', productsInCart);
+    await setItem('cart', cart);
   } catch {
-    throw new Error('Error pushing products in cart');
+    throw new Error('Error pushing cart');
   }
 };
 
-export const fetchProductsSaved = async () => {
+/* ---------------------------------- saved --------------------------------- */
+export const fetchSavedProducts = async () => {
   try {
-    const productsSaved = await getItem('products-saved');
+    const savedProducts = await getItem('saved-products');
 
-    if (!productsSaved) return null;
+    if (!savedProducts) return null;
 
-    const parsedProductsSaved: Product[] = JSON.parse(productsSaved);
+    const parsedSavedProducts: Product[] = JSON.parse(savedProducts);
 
-    return parsedProductsSaved;
+    return parsedSavedProducts;
   } catch {
     throw new Error('Error fetching saved products');
   }
 };
 
-export const pushProductsSaved = async (products: Product[]) => {
+export const pushSaveProducts = async (products: Product[]) => {
   try {
-    const productsSaved = JSON.stringify(products);
+    const saveProducts = JSON.stringify(products);
 
-    await setItem('products-saved', productsSaved);
+    await setItem('saved-products', saveProducts);
   } catch {
     throw new Error('Error pushing saved products');
+  }
+};
+
+/* ------------------------------- collection ------------------------------- */
+export const fetchCollection = async () => {
+  try {
+    const collection = await getItem('collection');
+
+    if (!collection) return null;
+
+    const parsedCollection: Product[] = JSON.parse(collection);
+
+    return parsedCollection;
+  } catch {
+    throw new Error('Error fetching collection');
+  }
+};
+
+export const pushCollection = async (products: Product[]) => {
+  try {
+    const collection = JSON.stringify(products);
+
+    await setItem('collection', collection);
+  } catch {
+    throw new Error('Error pushing collection');
   }
 };

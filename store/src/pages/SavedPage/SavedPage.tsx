@@ -1,14 +1,14 @@
 import styles from './SavedPage.module.css';
 
-import { useProduct } from 'src/hooks/useProduct';
 import { ProductCard } from 'src/components/ProductCard/ProductCard';
+import { useProductStateContext } from 'src/contexts/productContext';
 
 const SavedPage = () => {
-  const { productsSaved } = useProduct();
+  const { savedProducts } = useProductStateContext();
 
   return (
     <div className={styles['SavedPage']}>
-      {productsSaved.map((product) => (
+      {savedProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>

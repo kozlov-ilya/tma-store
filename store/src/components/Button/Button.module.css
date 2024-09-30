@@ -1,0 +1,11 @@
+.Button {
+  border-radius: 14px;
+}
+
+.Button_context_danger {
+  background: var(--tg-theme-destructive-text-color);
+}
+
+.Button_context_alternative {
+  background: white;
+}

@@ -1,13 +1,13 @@
 import styles from './Cart.module.css';
-import { useProduct } from 'src/hooks/useProduct';
 import { CartItem } from '../CartItem/CartItem';
+import { useProductStateContext } from 'src/contexts/productContext';
 
 export const Cart = () => {
-  const { productsInCart } = useProduct();
+  const { cart } = useProductStateContext();
 
   return (
     <div className={styles['Cart']}>
-      {productsInCart.map((product) => (
+      {cart.map((product) => (
         <CartItem key={product.id} product={product} />
       ))}
     </div>

@@ -1,133 +1,34 @@
-import { useProductContext } from 'src/contexts/productContext';
 import {
-  fetchCatalog,
-  fetchProductsInCart,
-  pushProductsInCart,
-  fetchProductsSaved,
-  pushProductsSaved,
-} from 'src/lib/products';
+  useProductDispatchContext,
+  useProductStateContext,
+} from 'src/contexts/productContext';
+import { ProductManager } from 'src/services/ProductManager';
 import { Product } from 'src/types/product';
 
 export const useProduct = () => {
-  const {
-    catalog,
-    setCatalog,
-    productsInCart,
-    setProductsInCart,
-    productsSaved,
-    setProductsSaved,
-  } = useProductContext();
+  const state = useProductStateContext();
+  const dispatch = useProductDispatchContext();
 
-  const initCatalog = async () => {
-    const fetchedCatalog = await fetchCatalog();
-
-    setCatalog(fetchedCatalog);
-  };
-
-  const initProductsInCart = async () => {
-    const productsInCart = await fetchProductsInCart();
-
-    if (!productsInCart) {
-      await pushProductsInCart([]);
-
-      setProductsInCart([]);
-
-      return;
-    }
-
-    setProductsInCart(productsInCart);
-  };
-
-  const initProductsSaved = async () => {
-    const productsSaved = await fetchProductsSaved();
-
-    if (!productsSaved) {
-      await pushProductsSaved([]);
-
-      setProductsSaved([]);
-
-      return;
-    }
-
-    setProductsSaved(productsSaved);
-  };
-
-  const updateProductsInCart = async (products: Product[]) => {
-    await pushProductsInCart(products);
-
-    setProductsInCart(products);
-  };
-
-  const updateProductsSaved = async (products: Product[]) => {
-    await pushProductsSaved(products);
-
-    setProductsSaved(products);
-  };
-
-  const addProductToCart = async (product: Product) => {
-    const productsInCart = await fetchProductsInCart();
-
-    if (!productsInCart) return;
-
-    const newProductsInCart = [...productsInCart, product];
-
-    await updateProductsInCart(newProductsInCart);
-  };
-
-  const addProductToSaved = async (product: Product) => {
-    const productsSaved = await fetchProductsSaved();
-
-    if (!productsSaved) return;
-
-    const newProductsSaved = [...productsSaved, product];
-
-    await updateProductsSaved(newProductsSaved);
-  };
-
-  const removeProductFromCart = async (productIdToRemove: string) => {
-    const productsInCart = await fetchProductsInCart();
-
-    if (!productsInCart) return;
-
-    const newProductsInCart = productsInCart.filter(
-      ({ id }) => id !== productIdToRemove,
-    );
-
-    await updateProductsInCart(newProductsInCart);
-  };
-
-  const removeProductFromSaved = async (productIdToRemove: string) => {
-    const productsSaved = await fetchProductsSaved();
-
-    if (!productsSaved) return;
-
-    const newProductsSaved = productsSaved.filter(
-      ({ id }) => id !== productIdToRemove,
-    );
-
-    await updateProductsSaved(newProductsSaved);
-  };
-
-  const checkIfProductInCart = (productId: string) => {
-    return !!productsInCart.find(({ id }) => id === productId);
-  };
-
-  const checkIfProductSaved = (productId: string) => {
-    return !!productsSaved.find(({ id }) => id === productId);
-  };
+  const { cart, collection, savedProducts } = ProductManager;
 
   return {
-    catalog,
-    initCatalog,
-    productsInCart,
-    initProductsInCart,
-    addProductToCart,
-    removeProductFromCart,
-    checkIfProductInCart,
-    productsSaved,
-    initProductsSaved,
-    addProductToSaved,
-    removeProductFromSaved,
-    checkIfProductSaved,
+    state,
+
+    // Cart
+    addProductToCart: (product: Product) => cart.addProduct(dispatch, product),
+    removeProductFromCart: (productId: string) =>
+      cart.removeProduct(dispatch, productId),
+
+    // Collection
+    addProductToCollection: (product: Product) =>
+      collection.addProduct(dispatch, product),
+    removeProductFromCollection: (productId: string) =>
+      collection.removeProduct(dispatch, productId),
+
+    // savedProducts
+    addProductToSavedProducts: (product: Product) =>
+      savedProducts.addProduct(dispatch, product),
+    removeProductFromSavedProducts: (productId: string) =>
+      savedProducts.removeProduct(dispatch, productId),
   };
 };
