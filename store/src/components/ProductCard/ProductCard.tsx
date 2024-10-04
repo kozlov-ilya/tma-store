@@ -1,6 +1,5 @@
 import styles from './ProductCard.module.css';
 
-// import { Button } from '@telegram-apps/telegram-ui';
 import { Button } from '../Button/Button';
 import { Product } from 'src/types/product';
 import { Icon } from '../Icon/Icon';
@@ -8,14 +7,17 @@ import coinIcon from 'src/assets/img/coin.svg';
 import { SaveButton } from '../SaveButton/SaveButton';
 import { useMutation } from '@tanstack/react-query';
 import { useProduct } from 'src/hooks/useProduct';
-import { useProductStateContext } from 'src/contexts/productContext';
+import { memo } from 'react';
 
 interface ProductCardProps {
   product: Product;
+  isInCart: boolean;
+  isInCollection: boolean;
+  isInSavedProducts: boolean;
 }
 
-export const ProductCard = (props: ProductCardProps) => {
-  const { product } = props;
+export const ProductCard = memo((props: ProductCardProps) => {
+  const { product, isInCart, isInCollection, isInSavedProducts } = props;
   const { id: productId, imgSrc, name, price } = product;
 
   const {
@@ -24,12 +26,6 @@ export const ProductCard = (props: ProductCardProps) => {
     addProductToCart,
     removeProductFromCart,
   } = useProduct();
-
-  const { savedProducts, cart, collection } = useProductStateContext();
-
-  const isInCart = !!cart.find(({ id }) => id === productId);
-  const isInSavedProducts = !!savedProducts.find(({ id }) => id === productId);
-  const isInCollection = !!collection.find(({ id }) => id === productId);
 
   const onCartButtonClick = async () => {
     if (isInCart) {
@@ -114,4 +110,4 @@ export const ProductCard = (props: ProductCardProps) => {
       </div>
     </div>
   );
-};
+});

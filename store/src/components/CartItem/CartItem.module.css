@@ -1,4 +1,7 @@
 .CartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 8px;
   border-radius: 14px;
   background: var(--color-bg-secondary);
@@ -27,4 +30,16 @@
   column-gap: 4px;
   color: var(--color-text);
   align-items: center;
+}
+
+.RemoveButton {
+  border-radius: 50%;
+  /* background: color-mix(in srgb, var(--color-bg-primary) 50%, transparent); */
+
+  color: var(--color-desctructive);
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 }

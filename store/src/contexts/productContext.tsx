@@ -58,13 +58,12 @@ const productReducer = (
 };
 
 type ProductStateContextType = ProductState;
-
 type ProductDispatchContextType = React.Dispatch<ProductAction>;
 
-export const ProductStateContext =
-  createContext<ProductStateContextType | null>(null);
-export const ProductDispatchContext =
-  createContext<ProductDispatchContextType | null>(null);
+const ProductStateContext = createContext<ProductStateContextType | null>(null);
+const ProductDispatchContext = createContext<ProductDispatchContextType | null>(
+  null,
+);
 
 export const ProductContextProvider = ({
   children,

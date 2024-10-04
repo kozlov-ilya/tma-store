@@ -1,20 +1,29 @@
 import { useEffect } from 'react';
-import { useProductDispatchContext } from 'src/contexts/productContext';
-import { ProductManager } from 'src/services/ProductManager';
+import { useProduct } from './useProduct';
+import { useToken } from './useToken';
 
 export const useInitStore = () => {
-  const dispatch = useProductDispatchContext();
-
-  const { catalog, cart, collection, savedProducts } = ProductManager;
+  const { initCollection, initCart, initCatalog, initSavedProducts } =
+    useProduct();
+  const { initTokens, initTransactions } = useToken();
 
   useEffect(() => {
     const initStore = async () => {
-      await catalog.init(dispatch);
-      await cart.init(dispatch);
-      await collection.init(dispatch);
-      await savedProducts.init(dispatch);
+      await initCollection();
+      await initCart();
+      await initCatalog();
+      await initSavedProducts();
+      await initTokens();
+      await initTransactions();
     };
 
     initStore();
-  }, [catalog, cart, collection, savedProducts, dispatch]);
+  }, [
+    initCollection,
+    initCart,
+    initCatalog,
+    initSavedProducts,
+    initTokens,
+    initTransactions,
+  ]);
 };

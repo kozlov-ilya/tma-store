@@ -10,8 +10,8 @@ import {
   fetchSavedProducts,
   pushCart,
   pushCollection,
-  pushSaveProducts,
-} from 'src/lib/products';
+  pushSavedProducts,
+} from 'src/lib/product';
 import { Product } from 'src/types/product';
 
 const createProductManager = (
@@ -71,7 +71,7 @@ const collectionManager = createProductManager(
 const savedProductsManager = createProductManager(
   'savedProducts',
   fetchSavedProducts,
-  pushSaveProducts,
+  pushSavedProducts,
 );
 
 const catalogManager = {

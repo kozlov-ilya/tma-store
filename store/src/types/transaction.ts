@@ -1,4 +1,4 @@
-export type TransactionAction = 'deposit' | 'buy';
+export type TransactionAction = 'send' | 'receive';
 
 export type Transaction = {
   id: string;

@@ -12,17 +12,17 @@
   color: var(--tg-theme-hint-color);
 }
 
-.CoinsContainer {
+.TokensContainer {
   display: flex;
   align-items: center;
   column-gap: 8px;
 }
 
-.CoinIcon {
+.TokenIcon {
   max-width: 36px;
 }
 
-.CoinsValue {
+.TokensValue {
   font-size: 3rem;
   line-height: 1.15em;
   font-weight: bold;

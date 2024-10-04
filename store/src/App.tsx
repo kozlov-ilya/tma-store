@@ -20,8 +20,6 @@ function App() {
   useInitColorProperties();
   useInitStore();
 
-  console.log('a');
-
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>

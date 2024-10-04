@@ -1,18 +1,17 @@
-import {
-  useProductDispatchContext,
-  useProductStateContext,
-} from 'src/contexts/productContext';
+import { useProductDispatchContext } from 'src/contexts/productContext';
 import { ProductManager } from 'src/services/ProductManager';
 import { Product } from 'src/types/product';
 
 export const useProduct = () => {
-  const state = useProductStateContext();
   const dispatch = useProductDispatchContext();
 
-  const { cart, collection, savedProducts } = ProductManager;
+  const { catalog, cart, collection, savedProducts } = ProductManager;
 
   return {
-    state,
+    initCatalog: () => catalog.init(dispatch),
+    initCart: () => cart.init(dispatch),
+    initCollection: () => collection.init(dispatch),
+    initSavedProducts: () => savedProducts.init(dispatch),
 
     // Cart
     addProductToCart: (product: Product) => cart.addProduct(dispatch, product),

@@ -56,7 +56,7 @@ export const fetchSavedProducts = async () => {
   }
 };
 
-export const pushSaveProducts = async (products: Product[]) => {
+export const pushSavedProducts = async (products: Product[]) => {
   try {
     const saveProducts = JSON.stringify(products);
 

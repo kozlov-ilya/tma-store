@@ -1,4 +1,4 @@
-.Cart {
+.ProductList {
   display: flex;
   flex-direction: column;
   row-gap: 4px;
