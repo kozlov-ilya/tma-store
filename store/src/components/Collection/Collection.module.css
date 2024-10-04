@@ -1,0 +1,5 @@
+.Collection {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}

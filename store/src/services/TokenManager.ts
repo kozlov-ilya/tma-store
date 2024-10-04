@@ -9,13 +9,13 @@ import {
 } from 'src/lib/token';
 import { Transaction, TransactionAction } from 'src/types/transaction';
 
-export const TokenManager = () => {
+const createTokenManager = () => {
   /* --------------------------------- tokens --------------------------------- */
   const token = {
     init: async (dispatch: React.Dispatch<TokenAction>) => {
       const fetchedTokenAmount = await fetchTokenAmount();
 
-      if (!fetchedTokenAmount) {
+      if (fetchedTokenAmount === null) {
         await pushTokenAmount(0);
 
         return;
@@ -29,7 +29,7 @@ export const TokenManager = () => {
     add: async (dispatch: React.Dispatch<TokenAction>, tokens: number) => {
       const fetchedTokenAmount = await fetchTokenAmount();
 
-      if (!fetchedTokenAmount) return;
+      if (fetchedTokenAmount === null) return;
 
       await pushTokenAmount(fetchedTokenAmount + tokens);
 
@@ -41,7 +41,7 @@ export const TokenManager = () => {
     remove: async (dispatch: React.Dispatch<TokenAction>, tokens: number) => {
       const fetchedTokenAmount = await fetchTokenAmount();
 
-      if (!fetchedTokenAmount) return;
+      if (fetchedTokenAmount === null) return;
 
       await pushTokenAmount(fetchedTokenAmount - tokens);
 
@@ -50,13 +50,21 @@ export const TokenManager = () => {
         payload: tokens,
       });
     },
+    reset: async (dispatch: React.Dispatch<TokenAction>) => {
+      await pushTokenAmount(0);
+
+      dispatch({
+        type: TokenActionKind.UPDATE_TOKENS,
+        payload: 0,
+      });
+    },
   };
   /* ------------------------------ transactions ------------------------------ */
   const transaction = {
     init: async (dispatch: React.Dispatch<TokenAction>) => {
       const fetchedTransactions = await fetchTransactions();
 
-      if (!fetchedTransactions) {
+      if (fetchedTransactions === null) {
         await pushTransactions([]);
 
         return;
@@ -74,7 +82,7 @@ export const TokenManager = () => {
     ) => {
       const fetchedTransactions = await fetchTransactions();
 
-      if (!fetchedTransactions) return;
+      if (fetchedTransactions === null) return;
 
       const id = uuidv4();
       const date = moment().format();
@@ -88,7 +96,21 @@ export const TokenManager = () => {
         payload: newTransaction,
       });
     },
+    reset: async (dispatch: React.Dispatch<TokenAction>) => {
+      const fetchedTransactions = await fetchTransactions();
+
+      if (fetchedTransactions === null) return;
+
+      await pushTransactions([]);
+
+      dispatch({
+        type: TokenActionKind.UPDATE_TRANSACTIONS,
+        payload: [],
+      });
+    },
   };
 
   return { token, transaction };
 };
+
+export const TokenManager = createTokenManager();

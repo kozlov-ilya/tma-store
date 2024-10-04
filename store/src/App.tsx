@@ -10,15 +10,21 @@ import SavedPage from './pages/SavedPage/SavedPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 
 import { useInitColorProperties } from './hooks/useInitColorProperties';
-import { useInitStore } from './hooks/useInitStore';
+import { useStore } from './hooks/useStore';
 
 import WebApp from '@twa-dev/sdk';
+import { useEffect } from 'react';
 
 WebApp.expand();
 
 function App() {
+  const { initStore } = useStore();
+
+  useEffect(() => {
+    initStore();
+  });
+
   useInitColorProperties();
-  useInitStore();
 
   return (
     <Routes>

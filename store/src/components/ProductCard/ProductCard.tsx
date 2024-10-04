@@ -7,6 +7,7 @@ import coinIcon from 'src/assets/img/coin.svg';
 import { SaveButton } from '../SaveButton/SaveButton';
 import { useMutation } from '@tanstack/react-query';
 import { useProduct } from 'src/hooks/useProduct';
+import { useStore } from 'src/hooks/useStore';
 import { memo } from 'react';
 
 interface ProductCardProps {
@@ -26,6 +27,8 @@ export const ProductCard = memo((props: ProductCardProps) => {
     addProductToCart,
     removeProductFromCart,
   } = useProduct();
+
+  const { sellProduct } = useStore();
 
   const onCartButtonClick = async () => {
     if (isInCart) {
@@ -47,12 +50,20 @@ export const ProductCard = memo((props: ProductCardProps) => {
     await addProductToSavedProducts(product);
   };
 
+  const onSellButtonClick = async () => {
+    await sellProduct(product);
+  };
+
   const mutationCart = useMutation({
     mutationFn: onCartButtonClick,
   });
 
   const mutationSave = useMutation({
     mutationFn: onSaveButtonClick,
+  });
+
+  const mutationSell = useMutation({
+    mutationFn: onSellButtonClick,
   });
 
   return (
@@ -85,11 +96,11 @@ export const ProductCard = memo((props: ProductCardProps) => {
         <div className={styles['ButtonContainer']}>
           {isInCollection ? (
             <Button
-              onClick={() => mutationCart.mutate()}
+              onClick={() => mutationSell.mutate()}
               size="m"
               stretched={true}
-              loading={mutationCart.isPending}
-              disabled={mutationCart.isPending}
+              loading={mutationSell.isPending}
+              disabled={mutationSell.isPending}
               context={'alternative'}
             >
               Sell

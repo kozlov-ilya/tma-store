@@ -2,28 +2,30 @@ import styles from './TransactionHistory.module.css';
 
 import { TransactionCard } from '../TransactionCard/TransactionCard';
 import { Button } from '@telegram-apps/telegram-ui';
-import { useTransaction } from 'src/hooks/useTransaction';
+import { useTokenStateContext } from 'src/contexts/tokenContext';
+import { useToken } from 'src/hooks/useToken';
 
 export const TransactionHistory = () => {
-  const { transactionHistory, resetTransactionHistory } = useTransaction();
+  const { transactions } = useTokenStateContext();
+  const { resetTransactions } = useToken();
 
-  const reversedHistory = [...transactionHistory].reverse();
+  const transactionsFromNewToOld = [...transactions].reverse();
 
   return (
     <div className={styles['TransactionHistory']}>
       <div className={styles['Title']}>Recent Transactions</div>
       <div className={styles['TransactionList']}>
-        {reversedHistory.map(({ id, action, value, date }) => (
-          <TransactionCard key={id} action={action} value={value} date={date} />
+        {transactionsFromNewToOld.map((transaction) => (
+          <TransactionCard key={transaction.id} transaction={transaction} />
         ))}
       </div>
       <Button
         stretched
         onClick={async () => {
-          resetTransactionHistory();
+          await resetTransactions();
         }}
       >
-        Reset history
+        Reset transactions
       </Button>
     </div>
   );

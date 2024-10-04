@@ -6,7 +6,7 @@
   /* padding-block: 16px; */
 }
 
-.CoinChips {
+.TokenChips {
   display: flex;
   column-gap: 8px;
 }

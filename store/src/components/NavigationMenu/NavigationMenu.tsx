@@ -19,7 +19,7 @@ export const NavigationMenu = () => {
       <NavigationItem path="/cart" text="Cart">
         <FaShoppingCart size={24} />
       </NavigationItem>
-      <NavigationItem path="/collection" text="Saved">
+      <NavigationItem path="/collection" text="Collection">
         <FaHeart size={24} />
       </NavigationItem>
     </InlineButtons>

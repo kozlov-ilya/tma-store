@@ -12,6 +12,7 @@ export enum ProductActionKind {
   UPDATE = 'UPDATE',
   ADD = 'ADD',
   REMOVE = 'REMOVE',
+  PUSH = 'PUSH',
 }
 
 export type ProductAction =
@@ -29,6 +30,11 @@ export type ProductAction =
       type: ProductActionKind.REMOVE;
       stateKey: keyof ProductState;
       payload: string;
+    }
+  | {
+      type: ProductActionKind.PUSH;
+      stateKey: keyof ProductState;
+      payload: Product[];
     };
 
 const initialState: ProductState = {
@@ -51,6 +57,11 @@ const productReducer = (
       return {
         ...state,
         [stateKey]: state[stateKey].filter(({ id }) => id !== payload),
+      };
+    case ProductActionKind.PUSH:
+      return {
+        ...state,
+        [stateKey]: [...state[stateKey], ...payload],
       };
     default:
       return state;

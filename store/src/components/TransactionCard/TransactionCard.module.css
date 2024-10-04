@@ -32,7 +32,7 @@
   color: var(--color-hint);
 }
 
-.Coins {
+.Tokens {
   display: flex;
   align-items: center;
   column-gap: 4px;
@@ -43,10 +43,10 @@
   column-gap: 2px;
 }
 
-.Value_deposit {
+.Value_receive {
   color: var(--color-positive);
 }
 
-.Value_buy {
+.Value_send {
   color: var(--color-desctructive);
 }

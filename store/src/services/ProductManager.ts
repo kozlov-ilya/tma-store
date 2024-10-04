@@ -31,6 +31,14 @@ const createProductManager = (
 
       dispatch({ type: ProductActionKind.UPDATE, payload: products, stateKey });
     },
+    update: async (
+      dispatch: React.Dispatch<ProductAction>,
+      products: Product[],
+    ) => {
+      await pushProducts(products);
+
+      dispatch({ type: ProductActionKind.UPDATE, payload: products, stateKey });
+    },
     addProduct: async (
       dispatch: React.Dispatch<ProductAction>,
       product: Product,
@@ -42,6 +50,22 @@ const createProductManager = (
       await pushProducts([...products, product]);
 
       dispatch({ type: ProductActionKind.ADD, payload: product, stateKey });
+    },
+    pushProducts: async (
+      dispatch: React.Dispatch<ProductAction>,
+      products: Product[],
+    ) => {
+      const fetchedProducts = await fetchProducts();
+
+      if (!fetchedProducts) return;
+
+      await pushProducts([...fetchedProducts, ...products]);
+
+      dispatch({
+        type: ProductActionKind.UPDATE,
+        payload: [...fetchedProducts, ...products],
+        stateKey,
+      });
     },
     removeProduct: async (
       dispatch: React.Dispatch<ProductAction>,
