@@ -5,18 +5,18 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
 
-import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const transitionDuration = 0.115;
 
-const swipeVariants = {
+const swipeVariants: Variants = {
   initial: (direction: 'left' | 'right') => ({
     x: direction === 'right' ? '-100%' : '100%',
   }),
   animate: {
     x: 0,
-    transition: { duration: transitionDuration },
+    transition: { duration: transitionDuration, ease: 'easeOut' },
   },
   exit: (direction: 'left' | 'right') => ({
     x: direction === 'right' ? '-100%' : '100%',
@@ -32,6 +32,11 @@ export const HomePageLayout = () => {
   const [direction, setDirection] = useState(
     pathname === '/' ? 'right' : 'left',
   );
+
+  useEffect(() => {
+    setCurrentView(pathname);
+    setDirection(pathname === '/' ? 'right' : 'left');
+  }, [pathname]);
 
   const navigateToHomeView = () => {
     if (currentView === '/') return;
@@ -78,7 +83,11 @@ export const HomePageLayout = () => {
           </SegmentedControl.Item>
         </SegmentedControl>
         <div {...handlers} className={styles['SwipeContainer']}>
-          <AnimatePresence mode="wait" onExitComplete={handleAnimationComplete}>
+          <AnimatePresence
+            mode="wait"
+            onExitComplete={handleAnimationComplete}
+            initial={false}
+          >
             <motion.div
               key={currentView}
               custom={direction}

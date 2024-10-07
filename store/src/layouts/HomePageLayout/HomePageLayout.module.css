@@ -1,8 +1,8 @@
 .HomePageLayout {
   position: relative;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
   row-gap: 12px;
 }
 
@@ -15,7 +15,7 @@
   div {
     div:first-child {
       background: var(--tg-theme-button-color);
-      transition: transform 0.3s;
+      transition: transform 0.275s;
     }
   }
 }

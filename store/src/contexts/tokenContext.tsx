@@ -49,7 +49,7 @@ const tokenReducer = (state: TokenState, action: TokenAction) => {
     case TokenActionKind.ADD_TRANSACTION:
       return {
         ...state,
-        transactions: [...state.transactions, action.payload],
+        transactions: [...state.transactions.slice(-2), action.payload],
       };
   }
 };

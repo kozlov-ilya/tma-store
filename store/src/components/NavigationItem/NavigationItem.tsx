@@ -18,7 +18,7 @@ export const NavigationItem = (props: NavigationItemProps) => {
     styles['NavigationItem'],
     !isActive ? styles['NavigationItem_active'] : '',
   ]
-    .filter(cls => cls.length)
+    .filter((cls) => cls.length)
     .join(' ');
 
   return (

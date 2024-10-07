@@ -19,14 +19,14 @@ export const TransactionHistory = () => {
           <TransactionCard key={transaction.id} transaction={transaction} />
         ))}
       </div>
-      <Button
+      {/* <Button
         stretched
         onClick={async () => {
           await resetTransactions();
         }}
       >
         Reset transactions
-      </Button>
+      </Button> */}
     </div>
   );
 };

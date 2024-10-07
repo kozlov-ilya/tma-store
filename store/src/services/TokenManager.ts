@@ -89,7 +89,10 @@ const createTokenManager = () => {
 
       const newTransaction: Transaction = { id, action, value, date };
 
-      await pushTransactions([...fetchedTransactions, newTransaction]);
+      await pushTransactions([
+        ...fetchedTransactions.slice(-2),
+        newTransaction,
+      ]);
 
       dispatch({
         type: TokenActionKind.ADD_TRANSACTION,

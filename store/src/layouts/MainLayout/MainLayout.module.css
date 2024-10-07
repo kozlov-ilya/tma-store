@@ -1,4 +1,6 @@
 .Main {
+  display: grid;
+  grid-template-rows: 1fr;
   min-height: 100svh;
   padding-inline: 1rem;
   padding-top: 16px;
