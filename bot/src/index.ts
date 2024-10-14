@@ -11,7 +11,7 @@ bot.command('start', async ctx => {
         [
           {
             text: 'Shop',
-            web_app: { url: 'https://vpp1sqdn-5173.euw.devtunnels.ms/' },
+            web_app: { url: 'https://vpp1sqdn-5173.euw.devtunnels.ms' },
           },
         ],
       ],
