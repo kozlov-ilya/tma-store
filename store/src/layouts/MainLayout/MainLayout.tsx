@@ -1,6 +1,6 @@
 import styles from './MainLayout.module.css';
 
-import { NavigationMenu } from 'src/components/NavigationMenu/NavigationMenu';
+import { NavigationMenu } from 'components/NavigationMenu';
 import { Outlet } from 'react-router-dom';
 
 export const MainLayout = () => {

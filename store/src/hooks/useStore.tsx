@@ -1,9 +1,9 @@
 import { Product } from 'src/types/product';
-import { useProduct } from './useProduct';
-import { useToken } from './useToken';
+import { useProduct } from '../features/products/hooks/useProduct';
+import { useToken } from '../features/tokens/hooks/useToken';
 import { StoreManager } from 'src/services/StoreManager';
-import { useProductDispatchContext } from 'src/contexts/productContext';
-import { useTokenDispatchContext } from 'src/contexts/tokenContext';
+import { useProductDispatchContext } from 'src/features/products/contexts/productContext';
+import { useTokenDispatchContext } from 'src/features/tokens/contexts/tokenContext';
 
 export const useStore = () => {
   const { initCollection, initCart, initCatalog, initSavedProducts } =

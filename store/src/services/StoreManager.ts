@@ -1,7 +1,7 @@
-import { TokenAction } from 'src/contexts/tokenContext';
-import { ProductAction } from 'src/contexts/productContext';
+import { TokenAction } from 'features/tokens/contexts/tokenContext';
+import { ProductAction } from 'features/products/contexts/productContext';
 import { Product } from 'src/types/product';
-import { fetchTokenAmount } from 'src/lib/token';
+import { fetchTokenAmount } from 'lib/token';
 import { TokenManager } from './TokenManager';
 import { ProductManager } from './ProductManager';
 

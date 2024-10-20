@@ -1,19 +1,17 @@
-import { Route, Routes } from 'react-router-dom';
-
-import { MainLayout } from './layouts/MainLayout/MainLayout';
-import { HomePageLayout } from './layouts/HomePageLayout/HomePageLayout';
-import HomePage from './pages/HomePage/HomePage';
-import WalletPage from './pages/WalletPage/WalletPage';
-import CartPage from './pages/CartPage/CartPage';
-import NotfoundPage from './pages/NotfoundPage/NotfoundPage';
-import SavedPage from './pages/SavedPage/SavedPage';
-import CollectionPage from './pages/CollectionPage/CollectionPage';
-
-import { useInitColorProperties } from './hooks/useInitColors';
-import { useStore } from './hooks/useStore';
-
 import WebApp from '@twa-dev/sdk';
+import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
+
+import { MainLayout, HomePageLayout } from 'src/layouts';
+import {
+  CartPage,
+  HomePage,
+  CollectionPage,
+  NotfoundPage,
+  SavedPage,
+  WalletPage,
+} from 'pages';
+import { useInitColorProperties, useStore } from 'hooks';
 
 WebApp.expand();
 

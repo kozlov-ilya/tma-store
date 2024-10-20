@@ -1,19 +1,10 @@
 import { Product } from 'src/types/product';
 import { getItem, setItem } from './cloudStorage';
+import catalog from 'assets/data/catalog.json';
 
 /* --------------------------------- catalog -------------------------------- */
 export const fetchCatalog = async () => {
-  const response = await fetch(
-    'https://kozlov-ilya.github.io/data/tma-store/data/catalog.json',
-  );
-
-  if (!response.ok) {
-    throw new Error(`Catalog fetch error: ${response.status}`);
-  }
-
-  const fetchedCatalog: Product[] = await response.json();
-
-  return fetchedCatalog;
+  return catalog;
 };
 
 /* ---------------------------------- cart ---------------------------------- */

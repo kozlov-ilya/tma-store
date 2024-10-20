@@ -2,7 +2,7 @@ import {
   ProductActionKind,
   ProductAction,
   ProductState,
-} from 'src/contexts/productContext';
+} from 'features/products/contexts/productContext';
 import {
   fetchCart,
   fetchCatalog,

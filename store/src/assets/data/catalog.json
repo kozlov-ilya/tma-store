@@ -1,0 +1,44 @@
+[
+  {
+    "id": "56122",
+    "name": "56122",
+    "price": 100,
+    "imgSrc": "src/assets/images/catalog/1.jpg"
+  },
+  {
+    "id": "9438",
+    "name": "9438",
+    "price": 250,
+    "imgSrc": "src/assets/images/catalog/2.jpg"
+  },
+  {
+    "id": "90578",
+    "name": "90578",
+    "price": 300,
+    "imgSrc": "src/assets/images/catalog/3.jpg"
+  },
+  {
+    "id": "45299",
+    "name": "45299",
+    "price": 20,
+    "imgSrc": "src/assets/images/catalog/4.jpg"
+  },
+  {
+    "id": "14880",
+    "name": "14880",
+    "price": 90,
+    "imgSrc": "src/assets/images/catalog/5.jpg"
+  },
+  {
+    "id": "24638",
+    "name": "24638",
+    "price": 370,
+    "imgSrc": "src/assets/images/catalog/6.jpg"
+  },
+  {
+    "id": "71499",
+    "name": "71499",
+    "price": 800,
+    "imgSrc": "src/assets/images/catalog/7.jpg"
+  }
+]

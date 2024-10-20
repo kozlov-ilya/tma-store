@@ -1,6 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment';
-import { TokenAction, TokenActionKind } from 'src/contexts/tokenContext';
+import {
+  TokenAction,
+  TokenActionKind,
+} from 'src/features/tokens/contexts/tokenContext';
 import {
   fetchTokenAmount,
   pushTokenAmount,

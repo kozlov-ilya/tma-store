@@ -22,7 +22,14 @@
 
     "baseUrl": ".",
     "paths": {
-      "src/*": ["./src/*"]
+      "src/*": ["./src/*"],
+      "components/*": ["./src/components/*"],
+      "features/*": ["./src/features/*"],
+      "styles/*": ["./src/styles/*"],
+      "lib/*": ["./src/lib/*"],
+      "assets/*": ["./src/assets/*"],
+      "pages": ["./src/pages"],
+      "hooks": ["./src/hooks"]
     }
   },
   "include": ["src"]
