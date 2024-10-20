@@ -1,0 +1,26 @@
+.Title {
+  font-size: 1rem;
+}
+
+/* ---------------------------------- role ---------------------------------- */
+.Title_role_primary {
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+.Title_role_secondary {
+  color: var(--color-hint);
+}
+
+/* ---------------------------------- size ---------------------------------- */
+.Title_size_s {
+  font-size: 0.75rem;
+}
+
+.Title_size_m {
+  font-size: 1rem;
+}
+
+.Title_size_l {
+  font-size: 1.25rem;
+}

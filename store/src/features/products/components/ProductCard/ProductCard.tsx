@@ -87,9 +87,9 @@ export const ProductCard = memo((props: ProductCardProps) => {
       </div>
       <div className={styles['Footer']}>
         <div className={styles['Info']}>
-          <div className={styles['Title']}>{name}</div>
+          <div className={styles['Title']}>{`#${name}`}</div>
           <span className={styles['Price']}>
-            <Icon icon="Coin" />
+            <Icon icon="Coin" size={16} />
             {price}
           </span>
         </div>

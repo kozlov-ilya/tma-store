@@ -43,6 +43,9 @@
 }
 
 .PriceValue {
+  display: flex;
+  align-items: center;
   font-size: 18px;
   font-weight: bold;
+  gap: 4px;
 }

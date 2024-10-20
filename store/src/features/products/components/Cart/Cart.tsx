@@ -4,6 +4,8 @@ import { useMutation } from '@tanstack/react-query';
 
 import { Button } from 'components/Button';
 import { CartItem } from '../CartItem';
+import { Icon } from 'components/Icon';
+import { Title } from 'components/Title';
 
 import { useProductStateContext } from 'features/products/contexts/productContext';
 import { useStore } from 'hooks';
@@ -26,7 +28,7 @@ export const Cart = () => {
 
   return (
     <div className={styles['Cart']}>
-      <div className={styles['Title']}>My Cart</div>
+      <Title role="secondary" text="My Cart" />
       <div className={styles['ProductList']}>
         {cart.map((product) => (
           <CartItem key={product.id} product={product} />
@@ -35,7 +37,10 @@ export const Cart = () => {
       <div className={styles['CheckoutContainer']}>
         <div className={styles['PriceContainer']}>
           <span className={styles['PriceTitle']}>Total Price</span>
-          <span className={styles['PriceValue']}>{totalPrice}</span>
+          <span className={styles['PriceValue']}>
+            <Icon icon="Coin" size={18} />
+            {totalPrice}
+          </span>
         </div>
         <Button
           stretched

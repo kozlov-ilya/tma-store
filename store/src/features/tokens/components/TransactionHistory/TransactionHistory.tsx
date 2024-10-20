@@ -4,6 +4,7 @@ import { TransactionCard } from '../TransactionCard';
 import { useTokenStateContext } from 'features/tokens/contexts/tokenContext';
 import { useToken } from 'features/tokens/hooks/useToken';
 import { Button } from 'components/Button';
+import { Title } from 'components/Title';
 
 export const TransactionHistory = () => {
   const { transactions } = useTokenStateContext();
@@ -13,7 +14,7 @@ export const TransactionHistory = () => {
 
   return (
     <div className={styles['TransactionHistory']}>
-      <div className={styles['Title']}>Recent Transactions</div>
+      <Title role="secondary" text="Recent Transactions" />
       <div className={styles['TransactionList']}>
         {transactionsFromNewToOld.map((transaction) => (
           <TransactionCard key={transaction.id} transaction={transaction} />

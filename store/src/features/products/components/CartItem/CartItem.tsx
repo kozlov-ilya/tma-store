@@ -37,9 +37,9 @@ export const CartItem = memo((props: Props) => {
           height={50}
         />
         <div className={styles['TextInfo']}>
-          <div className={styles['Title']}>{name}</div>
+          <div className={styles['Title']}>{`#${name}`}</div>
           <div className={styles['Price']}>
-            <Icon icon="Coin" />
+            <Icon icon="Coin" size={16} />
             {price}
           </div>
         </div>

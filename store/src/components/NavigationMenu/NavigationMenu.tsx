@@ -4,8 +4,9 @@ import { InlineButtons } from '@telegram-apps/telegram-ui';
 import { RiHome6Fill } from 'react-icons/ri';
 import { IoWallet } from 'react-icons/io5';
 import { FaShoppingCart } from 'react-icons/fa';
+import { PiCardsThreeFill } from 'react-icons/pi';
+
 import { NavigationItem } from '../NavigationItem';
-import { PiCardsFill } from 'react-icons/pi';
 
 export const NavigationMenu = () => {
   return (
@@ -20,7 +21,7 @@ export const NavigationMenu = () => {
         <FaShoppingCart size={24} />
       </NavigationItem>
       <NavigationItem path="/collection" text="My">
-        <PiCardsFill size={24} />
+        <PiCardsThreeFill size={24} />
       </NavigationItem>
     </InlineButtons>
   );
