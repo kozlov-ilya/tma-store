@@ -6,13 +6,20 @@ import { Button } from 'components/Button';
 import { CartItem } from '../CartItem';
 import { Icon } from 'components/Icon';
 import { Title } from 'components/Title';
+import { Placeholder } from 'components/Placeholder';
+import placeholderImg from 'assets/lottie/shpooky-grave.json';
 
 import { useProductStateContext } from 'features/products/contexts/productContext';
 import { useStore } from 'hooks';
+import { useNavigate } from 'react-router-dom';
+
+import WebApp from '@twa-dev/sdk';
 
 export const Cart = () => {
   const { cart } = useProductStateContext();
   const { checkoutProducts } = useStore();
+
+  const navigate = useNavigate();
 
   const totalPrice = cart.reduce((sum, cur) => (sum += cur.price), 0);
 
@@ -20,7 +27,18 @@ export const Cart = () => {
     const result = await checkoutProducts(cart);
 
     if (result.error) {
-      console.log(result.error.message);
+      // WebApp.showAlert(result.error.message);
+      WebApp.showPopup(
+        {
+          message: `${result.error.message}. Do you want to deposit some?`,
+          buttons: [{ type: 'close' }, { type: 'ok', id: '1' }],
+        },
+        (id) => {
+          if (id === '1') {
+            navigate('/wallet');
+          }
+        },
+      );
     }
   };
 
@@ -52,6 +70,25 @@ export const Cart = () => {
           Purchase
         </Button>
       </div>
+      {/* {error && (
+        <Snackbar
+          onClose={() => {
+            setError('');
+          }}
+          link={<Link to={'/wallet'}>Wallet</Link>}
+          description="Deposit Tokens in Wallet to purchase your shoppings"
+        >
+          {error}
+        </Snackbar>
+      )} */}
+      {!cart.length && (
+        <Placeholder
+          header="Your Cart is empty"
+          description="Shoopky even fell asleep waiting for your shoppings"
+          // button={{ navigateTo: '/', text: 'Start Shopping' }}
+          lottie={{ animationData: placeholderImg, width: 150 }}
+        />
+      )}
     </div>
   );
 };

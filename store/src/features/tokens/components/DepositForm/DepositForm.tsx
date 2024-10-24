@@ -55,7 +55,7 @@ export const DepositForm = () => {
       >
         Deposit
       </Button>
-      {/* <Button
+      <Button
         size="m"
         stretched
         mode="filled"
@@ -64,7 +64,7 @@ export const DepositForm = () => {
         }}
       >
         Reset
-      </Button> */}
+      </Button>
     </form>
   );
 };
