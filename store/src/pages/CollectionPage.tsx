@@ -1,10 +1,11 @@
 import { Collection } from 'features/products/components/Collection';
+import { Page } from 'components/Page';
 
 const CollectionPage = () => {
   return (
-    <div>
+    <Page>
       <Collection />
-    </div>
+    </Page>
   );
 };
 

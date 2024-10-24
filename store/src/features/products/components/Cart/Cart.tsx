@@ -49,7 +49,7 @@ export const Cart = () => {
           loading={mutationCheckout.isPending}
           onClick={() => mutationCheckout.mutate()}
         >
-          Checkout
+          Purchase
         </Button>
       </div>
     </div>

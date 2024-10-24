@@ -1,14 +1,11 @@
-import { BalanceDisplay } from 'features/tokens/components/BalanceDisplay';
-import { DepositForm } from 'features/tokens/components/DepositForm';
-import { TransactionHistory } from 'features/tokens/components/TransactionHistory';
+import { Page } from 'components/Page';
+import { Wallet } from 'features/tokens/components/Wallet';
 
 const WalletPage = () => {
   return (
-    <div>
-      <BalanceDisplay />
-      <DepositForm />
-      <TransactionHistory />
-    </div>
+    <Page>
+      <Wallet />
+    </Page>
   );
 };
 

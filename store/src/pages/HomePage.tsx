@@ -1,10 +1,11 @@
 import { Catalog } from 'features/products/components/Catalog';
+import { Page } from 'components/Page';
 
 const HomePage = () => {
   return (
-    <div>
+    <Page>
       <Catalog />
-    </div>
+    </Page>
   );
 };
 
