@@ -27,11 +27,13 @@ export const Cart = () => {
     const result = await checkoutProducts(cart);
 
     if (result.error) {
-      // WebApp.showAlert(result.error.message);
       WebApp.showPopup(
         {
           message: `${result.error.message}. Do you want to deposit some?`,
-          buttons: [{ type: 'close' }, { type: 'ok', id: '1' }],
+          buttons: [
+            { type: 'default', text: 'Close' },
+            { type: 'ok', id: '1' },
+          ],
         },
         (id) => {
           if (id === '1') {

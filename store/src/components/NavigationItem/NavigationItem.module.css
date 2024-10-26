@@ -9,3 +9,9 @@
 .NavigationItem.NavigationItem_active {
   color: var(--tg-theme-hint-color);
 }
+
+.Badge {
+  position: absolute;
+  top: 0px;
+  right: 10%;
+}

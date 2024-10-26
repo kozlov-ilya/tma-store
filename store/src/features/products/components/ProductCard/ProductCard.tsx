@@ -2,6 +2,7 @@ import styles from './ProductCard.module.css';
 
 import { useMutation } from '@tanstack/react-query';
 import { memo } from 'react';
+import WebApp from '@twa-dev/sdk';
 
 import { Button } from 'components/Button';
 import { Icon } from 'components/Icon';
@@ -50,7 +51,7 @@ export const ProductCard = memo((props: ProductCardProps) => {
     await addProductToSavedProducts(product);
   };
 
-  const onSellButtonClick = async () => {
+  const onSell = async () => {
     await sellProduct(product);
   };
 
@@ -63,8 +64,25 @@ export const ProductCard = memo((props: ProductCardProps) => {
   });
 
   const mutationSell = useMutation({
-    mutationFn: onSellButtonClick,
+    mutationFn: onSell,
   });
+
+  const onSellButtonClick = () => {
+    WebApp.showPopup(
+      {
+        message: `Are you sure you want to sell this item?`,
+        buttons: [
+          { type: 'default', text: 'Yes', id: '1' },
+          { type: 'destructive', text: 'Cancel' },
+        ],
+      },
+      (id) => {
+        if (id === '1') {
+          mutationSell.mutate();
+        }
+      },
+    );
+  };
 
   return (
     <div className={styles['ProductCard']}>
@@ -96,7 +114,7 @@ export const ProductCard = memo((props: ProductCardProps) => {
         <div className={styles['ButtonContainer']}>
           {isInCollection ? (
             <Button
-              onClick={() => mutationSell.mutate()}
+              onClick={() => onSellButtonClick()}
               size="m"
               stretched={true}
               loading={mutationSell.isPending}

@@ -7,8 +7,11 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { PiCardsThreeFill } from 'react-icons/pi';
 
 import { NavigationItem } from '../NavigationItem';
+import { useProductStateContext } from 'features/products/contexts/productContext';
 
 export const NavigationMenu = () => {
+  const { cart } = useProductStateContext();
+
   return (
     <InlineButtons className={styles['NavigationMenu']}>
       <NavigationItem path="/" text="Home">
@@ -17,7 +20,7 @@ export const NavigationMenu = () => {
       <NavigationItem path="/wallet" text="Wallet">
         <IoWallet size={24} />
       </NavigationItem>
-      <NavigationItem path="/cart" text="Cart">
+      <NavigationItem path="/cart" text="Cart" cartLength={cart.length}>
         <FaShoppingCart size={24} />
       </NavigationItem>
       <NavigationItem path="/collection" text="My">

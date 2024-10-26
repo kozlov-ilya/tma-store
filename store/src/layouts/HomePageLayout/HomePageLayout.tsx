@@ -8,7 +8,7 @@ import { useSwipeable } from 'react-swipeable';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-const transitionDuration = 0.115;
+const transitionDuration = 0.1;
 
 const swipeVariants: Variants = {
   initial: (direction: 'left' | 'right') => ({

@@ -4,6 +4,8 @@ import { Icon } from 'components/Icon';
 import { Transaction } from 'src/types/transaction';
 import { memo } from 'react';
 
+import { FaArrowUp, FaArrowDown } from 'react-icons/fa6';
+
 interface Props {
   transaction: Transaction;
 }
@@ -23,7 +25,13 @@ export const TransactionCard = memo((props: Props) => {
 
   return (
     <div className={styles['TransactionCard']}>
-      <div className={styles['Icon']}></div>
+      <div className={styles['Icon']}>
+        {action === 'send' ? (
+          <FaArrowUp size={24} />
+        ) : (
+          <FaArrowDown size={24} />
+        )}
+      </div>
       <div className={styles['Info']}>
         <div className={styles['Text']}>
           <div className={styles['Title']}>{title}</div>
