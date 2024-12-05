@@ -1,9 +1,9 @@
 # TMAStore (nft-store)
 
-### Live Demo
-![](https://i.imgur.com/Uepi3CZ.gif)
-
 **TMAStore** is a NFT-store Telegram Mini App.
+
+### Live Demo
+![demo](https://i.imgur.com/z29M6Rt.gif)
 
 ### Features
 - Store data in Telegram CloudStorage
